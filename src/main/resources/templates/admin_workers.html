@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Workers - Admin - Worker Booking System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f8fa;
+            margin: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .link-buttons a {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            text-decoration: none;
+        }
+
+        .link-buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .actions a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+    Worker Booking System - Manage Workers
+</header>
+
+<div class="container">
+    <h2>Manage Workers</h2>
+
+    <div class="link-buttons">
+        <a th:href="@{/admin/dashboard}">Back to Dashboard</a>
+        <a th:href="@{/admin/workers/add}">Add New Worker</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Service Category</th>
+                <th>Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="worker : ${workers}">
+                <td th:text="${worker.name}"></td>
+                <td th:text="${worker.serviceCategory.name}"></td>
+                <td th:text="${worker.rating}"></td>
+                <td class="actions">
+                    <a th:href="@{/admin/workers/edit/{id}(id=${worker.id})}">Edit</a> |
+                    <a th:href="@{/admin/workers/delete/{id}(id=${worker.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

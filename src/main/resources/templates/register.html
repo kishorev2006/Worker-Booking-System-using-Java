@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Worker Booking System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 5px;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #0d6efd;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0b5ed7;
+        }
+
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .error {
+            color: #dc3545;
+        }
+
+        .success {
+            color: #198754;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+    Worker Booking System - Register
+</header>
+<div class="container">
+    <h2>Create an Account</h2>
+    <form th:action="@{/user/register}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+
+        <label for="phoneNo">Phone Number:</label>
+        <input type="text" id="phoneNo" name="phoneNo" />
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="3"></textarea>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p th:if="${error}" th:text="${error}" class="message error"></p>
+    <p th:if="${message}" th:text="${message}" class="message success"></p>
+
+    <div class="login-link">
+        Already have an account? <a th:href="@{/user/login}">Login here</a>
+    </div>
+</div>
+</body>
+</html>

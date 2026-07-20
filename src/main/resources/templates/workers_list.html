@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Workers - Worker Booking System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f8fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .worker-info {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .worker-info span {
+            font-weight: bold;
+        }
+
+        .worker-rating {
+            color: #ff9900;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h3>Available Workers</h3>
+    <ul>
+        <th:block th:each="worker : ${workers}">
+            <li>
+                <div class="worker-info">
+                    <span th:text="${worker.name}"></span> - 
+                    <span class="worker-rating" th:text="${worker.rating}">0</span> 
+                </div>
+                <a th:href="@{/user/book(workerId=${worker.id})}">Book</a>
+            </li>
+        </th:block>
+    </ul>
+</body>
+</html>
