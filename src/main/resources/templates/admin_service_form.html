@@ -171,6 +171,18 @@
             padding-left: 45px;
         }
 
+        /* Keep the Service Name placeholder and typed value clear of the icon. */
+        #name.form-control {
+            height: 48px;
+            padding: 12px 14px 12px 46px !important;
+            line-height: 22px;
+        }
+
+        #name.form-control::placeholder {
+            line-height: 22px;
+            vertical-align: middle;
+        }
+
         /* Button styles */
         .btn {
             padding: 12px 24px;

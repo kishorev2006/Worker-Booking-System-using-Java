@@ -60,30 +60,33 @@ public class UserController {
         }
         user.setRole("USER");
         userService.registerUser(user);
-        model.addAttribute("message", "Registration successful. Please login.");
-        return "login";
+        return "redirect:/user/login?registered";
     }
 
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String showLoginForm(@RequestParam(required = false) String registered, Model model) {
+        if (registered != null) {
+            model.addAttribute("message", "Registration successful. Please login.");
+        }
         return "login";
     }
 
     @PostMapping("/login")
     public String loginUser(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
-        Optional<User> userOpt = userService.findByUsername(username);
-        if (userOpt.isPresent() && userOpt.get().getPassword().equals(password)) {
+        Optional<User> userOpt = userService.authenticate(username, password, "USER");
+        if (userOpt.isPresent()) {
             User user = userOpt.get();
             session.setAttribute("user", user);
-            if ("ADMIN".equalsIgnoreCase(user.getRole())) {
-                return "redirect:/admin/dashboard";
-            } else {
-                return "redirect:/user/dashboard";
-            }
+            return "redirect:/user/dashboard";
+        }
+        Optional<User> account = userService.findByUsername(username);
+        if (account.isPresent() && account.get().getPassword().equals(password)
+                && "ADMIN".equalsIgnoreCase(account.get().getRole())) {
+            model.addAttribute("error", "Please use the Admin Login page.");
         } else {
             model.addAttribute("error", "Invalid username or password");
-            return "login";
         }
+        return "login";
     }
 
     @GetMapping("/dashboard")

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkerBook | Trusted Home Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root { --blue:#1769e0; --blue-deep:#0b3c8c; --cyan:#16c6db; --ink:#102a43; --muted:#627d98; }
+        * { box-sizing:border-box; }
+        body { margin:0; min-height:100vh; overflow-x:hidden; font-family:'Poppins',sans-serif; color:var(--ink); background:radial-gradient(circle at 8% 10%,#d8faff 0,transparent 29%),linear-gradient(135deg,#f8fcff,#edf5ff); }
+        .landing { height:100vh; max-width:1440px; margin:auto; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(460px,.9fr); align-items:center; gap:clamp(32px,6vw,100px); padding:clamp(28px,5vw,76px); overflow:hidden; }
+        .hero-copy { max-width:650px; max-height:100vh; overflow-y:auto; scrollbar-width:none; -ms-overflow-style:none; -webkit-overflow-scrolling:touch; animation:fade-up .65s ease both; }
+        .hero-copy::-webkit-scrollbar { width:0; display:none; }
+        .brand { display:inline-flex; align-items:center; gap:10px; font-size:clamp(1.7rem,3vw,2.35rem); font-weight:800; color:var(--blue-deep); letter-spacing:-.06em; }
+        .brand-mark { width:48px; height:48px; display:grid; place-items:center; border-radius:14px; color:#fff; background:linear-gradient(135deg,var(--blue),var(--cyan)); box-shadow:0 10px 24px rgba(23,105,224,.25); }
+        .eyebrow { display:flex; align-items:center; gap:8px; margin:34px 0 12px; color:#087f98; font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }.eyebrow::before{content:'';width:28px;height:2px;background:var(--cyan)}
+        h1 { max-width:630px; margin:0; font-size:clamp(2.4rem,5vw,4.8rem); line-height:1.12; letter-spacing:-.055em; color:var(--ink); } h1 span{color:var(--blue)}
+        .hero-copy > p { max-width:540px; margin:20px 0 28px; font-size:1.04rem; line-height:1.8; color:var(--muted); }
+        .trust-list { display:flex; flex-wrap:wrap; gap:18px; color:#486581; font-size:.85rem; font-weight:600; }.trust-list span{display:inline-flex;align-items:center;gap:7px}.trust-list i{color:#10b7c8}
+        .illustration-wrap { position:relative; margin-top:32px; max-width:660px; animation:fade-up .75s .1s ease both; }.illustration-wrap::before{content:'';position:absolute;inset:9% 8%;border-radius:36px;background:linear-gradient(135deg,rgba(23,105,224,.12),rgba(22,198,219,.16));transform:rotate(-3deg);}.illustration{position:relative;display:block;width:100%;max-height:530px;object-fit:contain;filter:drop-shadow(0 22px 25px rgba(12,67,136,.17));}
+        .login-panel { position:sticky; top:clamp(28px,5vw,76px); align-self:start; display:flex; justify-content:center; animation:fade-up .75s .16s ease both; }.login-card { width:min(100%,600px); padding:clamp(42px,6vw,64px); border:1px solid rgba(255,255,255,.9); border-radius:24px; text-align:center; background:rgba(255,255,255,.78); box-shadow:0 24px 55px rgba(19,71,136,.16); backdrop-filter:blur(18px); }.login-card h2{margin:0;color:var(--ink);font-size:2rem;letter-spacing:-.03em}.login-card > p{margin:14px 0 40px;color:var(--muted);font-size:1.05rem}.actions{display:grid;gap:18px}.login-btn{display:flex;align-items:center;justify-content:center;gap:12px;padding:18px 24px;border-radius:13px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem;box-shadow:0 10px 20px rgba(23,105,224,.18);transition:transform .22s,box-shadow .22s}.login-btn.user{background:linear-gradient(120deg,var(--blue),#2987f1 60%,var(--cyan))}.login-btn.admin{background:linear-gradient(120deg,#0e4fae,#1769e0)}.login-btn:hover{transform:translateY(-3px);box-shadow:0 15px 24px rgba(23,105,224,.27);color:#fff}.login-btn i{font-size:1.15rem}.secure-note{display:flex;justify-content:center;align-items:center;gap:7px;margin:34px 0 0;color:#78909f;font-size:.84rem}.secure-note i{color:#10b7c8}
+        @keyframes fade-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+        @media(max-width:900px){.landing{grid-template-columns:1fr;gap:26px;padding:36px 24px}.hero-copy{max-width:none;text-align:center;display:flex;flex-direction:column;align-items:center}.eyebrow{margin-top:0}.illustration-wrap{order:2;margin:0 auto;max-width:560px}.illustration{max-height:420px}.login-panel{top:0;order:3}.trust-list{justify-content:center}}
+        @media(max-width:520px){.landing{padding:28px 16px}.brand{font-size:1.65rem}.brand-mark{width:42px;height:42px;border-radius:12px}h1{font-size:2.25rem}.hero-copy>p{font-size:.94rem;line-height:1.7}.trust-list{gap:11px;font-size:.75rem}.illustration{max-height:310px}.login-card{padding:28px 22px;border-radius:20px}}
+    </style>
+</head>
+<body>
+    <main class="landing">
+        <section class="hero-copy" aria-labelledby="hero-heading">
+            <div class="brand"><span class="brand-mark"><i class="fas fa-calendar-check"></i></span>WorkerBook</div>
+            <div class="eyebrow">Home services, simplified</div>
+            <h1 id="hero-heading">Trusted professionals for <span>every home need.</span></h1>
+            <p>From quick repairs to everyday care, connect with skilled local professionals and book the help you need with confidence.</p>
+            <div class="trust-list"><span><i class="fas fa-circle-check"></i>Verified professionals</span><span><i class="fas fa-bolt"></i>Easy booking</span><span><i class="fas fa-star"></i>Quality service</span></div>
+            <div class="illustration-wrap"><img class="illustration" th:src="@{/images/service-professionals-hero.png}" alt="A team of skilled home-service professionals"></div>
+        </section>
+
+        <aside class="login-panel" aria-label="Login options">
+            <div class="login-card">
+                <h2>Welcome to WorkerBook</h2>
+                <p>Choose how you would like to continue.</p>
+                <div class="actions">
+                    <a class="login-btn user" th:href="@{/user/login}"><i class="fas fa-user"></i>User Login</a>
+                    <a class="login-btn admin" th:href="@{/admin/login}"><i class="fas fa-user-shield"></i>Admin Login</a>
+                </div>
+                <div class="secure-note"><i class="fas fa-shield-halved"></i>Your account access is secure</div>
+            </div>
+        </aside>
+    </main>
+</body>
+</html>

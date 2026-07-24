@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Worker Booking System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #f4f7fc, #e2e8f0); color: #212529; }
+        .card { width: min(92%, 430px); padding: 36px; background: #fff; border-radius: 16px; box-shadow: 0 8px 24px rgba(149,165,180,.28); }
+        h1, p { text-align: center; } h1 { color: #3f37c9; margin: 0 0 8px; } p { color: #6c757d; margin: 0 0 28px; }
+        label { display: block; margin: 16px 0 7px; font-weight: 600; } input { width: 100%; padding: 13px; border: 1px solid #d7dce5; border-radius: 8px; font-size: 16px; }
+        button, .back { display: block; width: 100%; margin-top: 24px; padding: 13px; border: 0; border-radius: 8px; background: #3f37c9; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; }
+        .back { margin-top: 12px; background: #eef0ff; color: #3f37c9; }
+        .error { margin: 0 0 18px; padding: 12px; border-radius: 8px; background: #fff0f4; color: #c2185b; text-align: left; }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1><i class="fas fa-user-shield"></i>Admin Login</h1>
+        <p>Sign in with an administrator account.</p>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+        <form th:action="@{/admin/login}" method="post">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" required autofocus>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" required>
+            <button type="submit">Sign In</button>
+        </form>
+        <a class="back" th:href="@{/}">Back to login choices</a>
+    </main>
+    <script th:src="@{/js/ui.js}"></script>
+</body>
+</html>

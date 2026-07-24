@@ -8,4 +8,6 @@ import com.wbs.wbs.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
+
+    Optional<User> findByUsernameAndPasswordAndRole(String username, String password, String role);
 }

@@ -22,6 +22,10 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    public Optional<User> authenticate(String username, String password, String role) {
+        return userRepository.findByUsernameAndPasswordAndRole(username, password, role);
+    }
+
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
